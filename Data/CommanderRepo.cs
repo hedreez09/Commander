@@ -14,6 +14,14 @@ namespace Commander.Data
 		{
 			_context = context;
 		}
+
+		public void CreateCommand(Command obj)
+		{
+			if (obj == null)
+				throw new ArgumentNullException(nameof(obj));
+			_context.Commands.Add(obj);
+		}
+
 		public IEnumerable<Command> GetAllCommand()
 		{
 			return _context.Commands.ToList();
@@ -22,6 +30,11 @@ namespace Commander.Data
 		public Command GetCommandById(int Id)
 		{
 			return _context.Commands.FirstOrDefault(x => x.id == Id);
+		}
+
+		public bool SaveChanges()
+		{
+			return (_context.SaveChanges() >= 0);
 		}
 	}
 }
