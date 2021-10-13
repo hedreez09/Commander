@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace Commander
 {
@@ -28,12 +29,16 @@ namespace Commander
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
             services.AddDbContext<CommanderContext>(opt => opt.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers();
+                //.AddNewtonsoftJson(s => {
+                //s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //});
+
+            
             //services.AddScoped<ICommanderRepo, MockCommanderRepo>();
             services.AddScoped<ICommanderRepo, CommanderRepo>();
             services.AddSwaggerGen(c =>

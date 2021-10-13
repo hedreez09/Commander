@@ -7,7 +7,7 @@ namespace Commander.Data
 	{
 		public void CreateCommand(Command obj)
 		{
-			throw new System.NotImplementedException();
+			//later work
 		}
 
 		public IEnumerable<Command> GetAllCommand()
@@ -29,6 +29,11 @@ namespace Commander.Data
 		public bool SaveChanges()
 		{
 			throw new System.NotImplementedException();
+		}
+
+		public void UpdateCommand(Command obj)
+		{
+			//nothing 
 		}
 	}
 

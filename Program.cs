@@ -22,5 +22,6 @@ namespace Commander
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+    
     }
 }
